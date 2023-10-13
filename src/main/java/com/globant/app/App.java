@@ -8,7 +8,10 @@ public class App
 {
     public static void main( String[] args )
     {
-        SparkSession spark = SparkSession.builder().master("local[*]").appName("globant").getOrCreate();
+        SparkSession spark = SparkSession.builder().master("local[*]")
+                .config("spark.sql.legacy.timeParserPolicy", "LEGACY")
+                .appName("globant")
+                .getOrCreate();
         new RequestController(spark, new RequestServiceImpl());
     }
 }

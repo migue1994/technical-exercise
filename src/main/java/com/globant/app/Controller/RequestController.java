@@ -28,6 +28,13 @@ public class RequestController {
             }
         });
 
-
+        get("/api/data/query/sql", (req, res) -> {
+            try{
+                res.status(201);
+                return requestServiceI.hiredEmployees(spark).toJSON().collectAsList();
+            }catch (Exception e){;
+                return "Failed";
+            }
+        });
     }
 }
