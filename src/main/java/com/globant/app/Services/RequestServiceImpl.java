@@ -1,14 +1,15 @@
 package com.globant.app.Services;
+import com.globant.app.Interface.RequestServiceI;
 import org.apache.spark.sql.SparkSession;
 
-public class RequestService {
+public class RequestServiceImpl implements RequestServiceI {
 
+    @Override
     public void uploadData(SparkSession spark) {
         System.out.println("enntro");
         String path = "C:\\Users\\Miguel\\Downloads\\data_challenge_files\\hired_employees.csv";
         spark.read().csv(path)
-                .limit(1000)
-                .repartition(1)
+                .repartition(10)
                 .write()
                 .format("jdbc")
                 .option("driver", "com.mysql.cj.jdbc.Driver")
