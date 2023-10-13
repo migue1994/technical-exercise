@@ -38,6 +38,7 @@ public class RequestServiceImpl implements RequestServiceI {
         Dataset<Row> departments = readDF(spark, "departments");
 
         return hired_employees.alias("A")
+                .filter(substring(col("datetime"), 1, 4).equalTo("2021"))
                 .join(
                         jobs.alias("B"),
                         col("A.job_id").equalTo(col("B.id")),
@@ -48,7 +49,6 @@ public class RequestServiceImpl implements RequestServiceI {
                         col("A.department_id").equalTo(col("B.id")),
                         "inner")
                 .drop(col("B.id")).alias("A")
-                .filter(substring(col("datetime"), 1, 4).equalTo("2021"))
                 .groupBy(col("department"), col("job"))
                 .agg(
                         sum(dateBetweenCondition("2020-12-31", "2021-03-31")).alias("Q1"),
@@ -56,6 +56,26 @@ public class RequestServiceImpl implements RequestServiceI {
                         sum(dateBetweenCondition("2021-06-30", "2021-09-30")).alias("Q3"),
                         sum(dateBetweenCondition("2021-09-30", "2021-12-31")).alias("Q4"))
                 .orderBy(col("department").asc(), col("job").asc());
+    }
+
+    @Override
+    public Dataset<Row> hiredEmployeesByDepartment(SparkSession spark) {
+        Dataset<Row> hired_employees = readDF(spark, "hired_employees");
+        Dataset<Row> departments = readDF(spark, "departments");
+
+        Dataset<Row> result = hired_employees
+                .filter(substring(col("datetime"), 1, 4).equalTo("2021"))
+                .alias("A")
+                .join(
+                        departments.alias("B"),
+                        col("A.department_id").equalTo(col("B.id")),
+                        "inner")
+                .groupBy(col("B.id"), col("department"))
+                .agg(count(col("B.id")).alias("hired"));
+
+        Double value = result.select(avg(col("hired").cast("Double"))).first().getDouble(0);
+
+        return result.filter(col("hired").gt(lit(value)));
     }
 
     private StructType getSchema(String fileName){

@@ -36,5 +36,14 @@ public class RequestController {
                 return "Failed";
             }
         });
+
+        get("/api/data/query/sql2", (req, res) -> {
+            try{
+                res.status(201);
+                return requestServiceI.hiredEmployeesByDepartment(spark).toJSON().collectAsList();
+            }catch (Exception e){;
+                return e;
+            }
+        });
     }
 }

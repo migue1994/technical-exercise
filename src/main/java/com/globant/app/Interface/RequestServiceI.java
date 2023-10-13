@@ -8,4 +8,6 @@ public interface RequestServiceI {
     void uploadData(SparkSession spark, String fileName);
 
     Dataset<Row> hiredEmployees(SparkSession spark);
+
+    Dataset<Row> hiredEmployeesByDepartment(SparkSession spark);
 }
