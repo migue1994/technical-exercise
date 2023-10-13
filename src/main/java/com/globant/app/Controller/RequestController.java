@@ -8,7 +8,7 @@ import static spark.Spark.get;
 public class RequestController {
 
     private final RequestServiceI requestServiceI;
-    private SparkSession spark;
+    private final SparkSession spark;
 
     public RequestController(SparkSession spark, RequestServiceI requestServiceI){
         this.requestServiceI = requestServiceI;
@@ -17,14 +17,17 @@ public class RequestController {
     }
 
     private void mainApiRest(){
-        get("/api/data/:name", (req, res) -> {
+        get("/api/data/:fileName", (req, res) -> {
             try{
-                requestServiceI.uploadData(spark);
+                requestServiceI.uploadData(spark, req.params(":fileName"));
                 res.status(201);
                 return "Success";
             }catch (Exception e){
-                return res;
+                res.status(401);
+                return "Failed";
             }
         });
+
+
     }
 }
