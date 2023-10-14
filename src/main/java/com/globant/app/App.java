@@ -16,6 +16,6 @@ public class App
 
         AuxiliaryMethodsImpl auxiliaryMethodsImpl = new AuxiliaryMethodsImpl();
 
-        new RequestController(spark, new RequestServiceImpl(auxiliaryMethodsImpl));
+        new RequestController(spark, new RequestServiceImpl(auxiliaryMethodsImpl), auxiliaryMethodsImpl);
     }
 }

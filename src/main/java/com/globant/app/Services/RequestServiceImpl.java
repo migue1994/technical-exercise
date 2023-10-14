@@ -17,9 +17,9 @@ public class RequestServiceImpl implements RequestServiceI {
     }
 
     @Override
-    public void uploadData(SparkSession spark, String fileName) {
-        String path = String.format("C:\\Users\\Miguel\\Downloads\\data_challenge_files\\%s.csv", fileName);
-        StructType schema = auxiliaryMethodsI.getSchema(fileName);
+    public void uploadData(SparkSession spark, String basePath, String fileName, String schemaType) {
+        String path = basePath + fileName + ".csv";
+        StructType schema = auxiliaryMethodsI.getSchema(schemaType);
 
         spark.read()
                 .schema(schema)
@@ -36,10 +36,7 @@ public class RequestServiceImpl implements RequestServiceI {
     }
 
     @Override
-    public Dataset<Row> hiredEmployees(SparkSession spark) {
-        Dataset<Row> jobs = auxiliaryMethodsI.readDF(spark, "jobs");
-        Dataset<Row> hired_employees = auxiliaryMethodsI.readDF(spark, "hired_employees");
-        Dataset<Row> departments = auxiliaryMethodsI.readDF(spark, "departments");
+    public Dataset<Row> hiredEmployees(Dataset<Row> hired_employees, Dataset<Row> jobs, Dataset<Row> departments) {
 
         return hired_employees.alias("A")
                 .filter(substring(col("datetime"), 1, 4).equalTo("2021"))
@@ -63,9 +60,7 @@ public class RequestServiceImpl implements RequestServiceI {
     }
 
     @Override
-    public Dataset<Row> hiredEmployeesByDepartment(SparkSession spark) {
-        Dataset<Row> hired_employees = auxiliaryMethodsI.readDF(spark, "hired_employees");
-        Dataset<Row> departments = auxiliaryMethodsI.readDF(spark, "departments");
+    public Dataset<Row> hiredEmployeesByDepartment(Dataset<Row> hired_employees, Dataset<Row> departments) {
 
         Dataset<Row> result = hired_employees
                 .filter(substring(col("datetime"), 1, 4).equalTo("2021"))

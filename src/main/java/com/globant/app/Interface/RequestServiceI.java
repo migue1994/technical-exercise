@@ -5,9 +5,9 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 public interface RequestServiceI {
-    void uploadData(SparkSession spark, String fileName);
+    void uploadData(SparkSession spark, String basePath, String fileName, String schemaType);
 
-    Dataset<Row> hiredEmployees(SparkSession spark);
+    Dataset<Row> hiredEmployees(Dataset<Row> hired_employees, Dataset<Row> jobs, Dataset<Row> departments);
 
-    Dataset<Row> hiredEmployeesByDepartment(SparkSession spark);
+    Dataset<Row> hiredEmployeesByDepartment(Dataset<Row> hired_employees, Dataset<Row> departments);
 }
