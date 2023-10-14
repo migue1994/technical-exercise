@@ -6,7 +6,7 @@ This project aims to migrate data from csv files to an MySQL database throught a
 
 For download the project, you must have git on your computer and type this comand in the command line prompt
 
-´´$ git clone https://github.com/migue1994/technical-exercise.git´´
+´$ git clone https://github.com/migue1994/technical-exercise.git´
 
 And open with you prefered IDLE
 
@@ -23,8 +23,8 @@ If you wanto to execute the API, you will need to have this tools or dependencie
 
 To laun the API rest, you must to be in the root project an type the next commands:
 
-* ´´$ mvn clean install´´
-* ´´$ mvn java:exec´´
+* ´$ mvn clean install´
+* ´$ mvn java:exec´
 
 And the API starts to wait for a request. We can use postman for send the next requests:
 
