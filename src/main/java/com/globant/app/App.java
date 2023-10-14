@@ -1,6 +1,6 @@
 package com.globant.app;
 
-import com.globant.app.Controller.AuxiliaryMethodsImpl;
+import com.globant.app.Services.AuxiliaryMethodsImpl;
 import com.globant.app.Controller.RequestController;
 import com.globant.app.Services.RequestServiceImpl;
 import org.apache.spark.sql.SparkSession;

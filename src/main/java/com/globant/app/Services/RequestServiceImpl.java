@@ -79,6 +79,7 @@ public class RequestServiceImpl implements RequestServiceI {
 
         Double value = result.select(avg(col("hired").cast("Double"))).first().getDouble(0);
 
-        return result.filter(col("hired").gt(lit(value)));
+        return result.filter(col("hired").gt(lit(value)))
+                .orderBy(col("hired").desc());
     }
 }

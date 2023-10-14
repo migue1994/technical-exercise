@@ -20,20 +20,17 @@ public class RequestController {
         get("/api/data/:fileName", (req, res) -> {
             try{
                 requestServiceI.uploadData(spark, req.params(":fileName"));
-                res.status(201);
-                return "Success";
+                return String.format("The file %s has been uploaded correctly!", req.params(":fileName"));
             }catch (Exception e){
-                res.status(401);
-                return "Failed";
+                return e;
             }
         });
 
         get("/api/data/query/sql", (req, res) -> {
             try{
-                res.status(201);
                 return requestServiceI.hiredEmployees(spark).toJSON().collectAsList();
             }catch (Exception e){;
-                return "Failed";
+                return e;
             }
         });
 

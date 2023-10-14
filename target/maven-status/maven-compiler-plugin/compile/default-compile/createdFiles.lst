@@ -1,0 +1,6 @@
+com\globant\app\App.class
+com\globant\app\Services\AuxiliaryMethodsImpl.class
+com\globant\app\Controller\RequestController.class
+com\globant\app\Interface\RequestServiceI.class
+com\globant\app\Interface\AuxiliaryMethodsI.class
+com\globant\app\Services\RequestServiceImpl.class
