@@ -1,4 +1,4 @@
-# technical-exercise
+# Technical Exercise
 
 This project aims to migrate data from csv files to an MySQL database throught a batch processing using a java API rest built on java spark. This API let us also make some complexity sql queries and it use apache spark as main data engine.
 
