@@ -1,5 +1,6 @@
 package com.globant.app;
 
+import com.globant.app.Interface.AuxiliaryMethodsI;
 import com.globant.app.Interface.RequestServiceI;
 import com.globant.app.Services.AuxiliaryMethodsImpl;
 import com.globant.app.Services.RequestServiceImpl;
@@ -9,8 +10,8 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 public class RequestServiceImplTest extends TestCase {
-
-    private final RequestServiceI requestService = new RequestServiceImpl(new AuxiliaryMethodsImpl());
+    private final AuxiliaryMethodsI auxiliaryMethodsI = new AuxiliaryMethodsImpl();
+    private final RequestServiceI requestService = new RequestServiceImpl(auxiliaryMethodsI);
     private final SparkSession spark = SparkSession.builder().master("local[*]").getOrCreate();
 
 
@@ -25,11 +26,28 @@ public class RequestServiceImplTest extends TestCase {
                 .option("password", "Yt3AJBSqPk")
                 .load();
 
-        assertEquals(df.count(), 7);
+        assertEquals(df.count(), 10);
         assertEquals(df.columns().length, 5);
     }
 
     public void testHiredEmployees(){
+        Dataset<Row> jobs = auxiliaryMethodsI.readDF(spark, "jobsTest");
+        Dataset<Row> hired_employees = auxiliaryMethodsI.readDF(spark, "readDataTest");
+        Dataset<Row> departments = auxiliaryMethodsI.readDF(spark, "departmentsTest");
 
+        Dataset<Row> result = requestService.hiredEmployees(hired_employees, jobs, departments);
+
+        assertEquals(result.count(), 1);
+        assertEquals(result.columns().length, 6);
     }
+
+    public  void testHiredEmployeesByDepartment(){
+        Dataset<Row> hired_employees = auxiliaryMethodsI.readDF(spark, "readDataTest");
+        Dataset<Row> departments = auxiliaryMethodsI.readDF(spark, "departmentsTest");
+
+        Dataset<Row> result = requestService.hiredEmployeesByDepartment(hired_employees, departments);
+
+        assertEquals(result.count(), 1);
+    }
+
 }

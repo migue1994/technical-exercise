@@ -72,7 +72,7 @@ public class RequestServiceImpl implements RequestServiceI {
                 .groupBy(col("B.id"), col("department"))
                 .agg(count(col("B.id")).alias("hired"));
 
-        Double value = result.select(avg(col("hired").cast("Double"))).first().getDouble(0);
+        Double value = result.select(mean(col("hired").cast("Double"))).first().getDouble(0);
 
         return result.filter(col("hired").gt(lit(value)))
                 .orderBy(col("hired").desc());
