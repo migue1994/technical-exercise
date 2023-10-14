@@ -27,6 +27,7 @@ public class RequestServiceImpl implements RequestServiceI {
                 .repartition(10)
                 .write()
                 .format("jdbc")
+                .mode("overwrite")
                 .option("driver", "com.mysql.cj.jdbc.Driver")
                 .option("url", "jdbc:mysql://sql10.freesqldatabase.com:3306/sql10652684")
                 .option("dbtable", fileName)
