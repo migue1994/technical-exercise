@@ -30,7 +30,7 @@ And the API starts to wait for a request. We can use postman for send the next r
 
 * http://localhost:4567/api/data/:fileName -> This request let us to migrate the csv file to an MySQL database, where :fileName is a parameter with the name of the csv file we want to migrate (departments.csv, hired_employees.csv, jobs.csv)
 * http://localhost:4567/api/data/query/sql -> The request returns the data of the first query from the exercise statement
-* http://localhost:4567/api/data/query/sql -> The request returns the data of the second query from the exercise statement
+* http://localhost:4567/api/data/query/sql2 -> The request returns the data of the second query from the exercise statement
 
 ## Author
 
