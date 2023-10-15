@@ -39,3 +39,13 @@ And the API starts to wait for a request. We can use postman for send the next r
 ## Licence
 
 [LICENSE.txt](LICENSE.txt)
+
+## MySQL Database
+
+You can conect to the MySql database through a database management with the next cresentials:
+
+* Host: sql10.freesqldatabase.com
+* Database name: sql10652684
+* Database user: sql10652684
+* Database password: Yt3AJBSqPk
+* Port number: 3306
