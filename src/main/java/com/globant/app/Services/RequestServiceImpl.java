@@ -26,14 +26,7 @@ public class RequestServiceImpl implements RequestServiceI {
                 .csv(path)
                 .repartition(10)
                 .write()
-                .format("jdbc")
-                .mode("overwrite")
-                .option("driver", "com.mysql.cj.jdbc.Driver")
-                .option("url", "jdbc:mysql://sql10.freesqldatabase.com:3306/sql10652684")
-                .option("dbtable", fileName)
-                .option("user", "sql10652684")
-                .option("password", "Yt3AJBSqPk")
-                .save();
+                .jdbc(auxiliaryMethodsI.sqlUrl(), fileName, auxiliaryMethodsI.mySqlProps());
     }
 
     @Override
