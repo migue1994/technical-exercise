@@ -54,14 +54,14 @@ public class AuxiliaryMethodsImpl implements AuxiliaryMethodsI {
     @Override
     public Properties mySqlProps() {
         Properties sqlProps = new Properties();
-        sqlProps.put("user", "Miguel");
-        sqlProps.put("password", "Mysql1234");
+        sqlProps.put("user", "miguel");
+        sqlProps.put("password", "Globant123");
         sqlProps.put("sslCert", "src/test/sslSql/DigiCertGlobalRootCA.crt.pem");
         return sqlProps;
     }
 
     @Override
     public String sqlUrl() {
-        return "jdbc:mysql://miguelserver.mysql.database.azure.com:3306/globantdb?useSSL=true";
+        return "jdbc:mysql://globantmysqlserver.mysql.database.azure.com:3306/myglobantsql?useSSL=true";
     }
 }

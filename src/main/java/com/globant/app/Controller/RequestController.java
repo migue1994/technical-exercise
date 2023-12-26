@@ -7,6 +7,7 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class RequestController {
 
