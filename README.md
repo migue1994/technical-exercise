@@ -1,6 +1,6 @@
 # Technical Exercise
 
-This project aims to migrate data from csv files to an MySQL database throught a batch processing using a java API rest built on java spark. This API let us also make some complexity sql queries and it use apache spark as main data engine.
+This project aims to migrate data from csv files to a MySQL database through a batch processing, using a java API rest built on java spark. This API let us to make some complexity sql queries too and it uses apache spark as main data engine.
 
 ## Download
 
@@ -21,7 +21,7 @@ If you wanto to execute the API, you will need to have this tools or dependencie
 
 ## Execution
 
-To laun the API rest, you must to be in the root project an type the next commands:
+To launch the API rest, you must to be in the root project an type the next commands:
 
 * ´$ mvn clean install´
 * ´$ mvn java:exec´
