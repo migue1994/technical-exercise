@@ -24,7 +24,7 @@ If you wanto to execute the API, you will need to have this tools or dependencie
 To launch the API rest, you must to be in the root project an type the next commands:
 
 * ´$ mvn clean install´
-* ´$ mvn java:exec´
+* ´$ mvn exec:java´
 
 And the API starts to wait for a request. We can use postman for send the next requests:
 
