@@ -17,13 +17,14 @@ public class RequestServiceImplTest extends TestCase {
 
     public void testUploadData(){
         String basePath = "src/test/resources/testData/";
-        requestService.uploadData(spark, basePath, "readDataTest", "hired_employees");
+        requestService.uploadData(spark, basePath, "readDataTest", "readDataTest");
         Dataset<Row> df = spark.read().format("jdbc")
                 .option("driver", "com.mysql.cj.jdbc.Driver")
-                .option("url", "jdbc:mysql://sql10.freesqldatabase.com:3306/sql10652684")
+                .option("url", "jdbc:mysql://globantmysqlserver.mysql.database.azure.com:3306/myglobantsql?useSSL=true")
                 .option("dbtable", "readDataTest")
-                .option("user", "sql10652684")
-                .option("password", "Yt3AJBSqPk")
+                .option("user", "miguel")
+                .option("sslCert", "src/test/sslSql/DigiCertGlobalRootCA.crt.pem")
+                .option("password", "Globant123")
                 .load();
 
         assertEquals(df.count(), 10);

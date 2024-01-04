@@ -26,6 +26,7 @@ public class RequestServiceImpl implements RequestServiceI {
                 .csv(path)
                 .repartition(10)
                 .write()
+                .mode("overwrite")
                 .jdbc(auxiliaryMethodsI.sqlUrl(), fileName, auxiliaryMethodsI.mySqlProps());
     }
 
@@ -44,7 +45,7 @@ public class RequestServiceImpl implements RequestServiceI {
                         col("A.department_id").equalTo(col("B.id")),
                         "inner")
                 .drop(col("B.id")).alias("A")
-                .groupBy(col("department"), col("job"))
+                .groupBy(col("A.department"), col("A.job"))
                 .agg(
                         sum(auxiliaryMethodsI.dateBetweenCondition("2020-12-31", "2021-03-31")).alias("Q1"),
                         sum(auxiliaryMethodsI.dateBetweenCondition("2021-03-31", "2021-06-30")).alias("Q2"),
