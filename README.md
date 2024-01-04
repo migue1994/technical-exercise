@@ -42,10 +42,10 @@ And the API starts to wait for a request. We can use postman for send the next r
 
 ## MySQL Database
 
-You can conect to the MySql database through a database management with the next cresentials:
+You can conect to the MySql database through a database management with the next credentials:
 
-* Host: sql10.freesqldatabase.com
-* Database name: sql10652684
-* Database user: sql10652684
-* Database password: Yt3AJBSqPk
+* Host: globantmysqlserver.mysql.database.azure.com
+* Database name: myglobantsql
+* Database user: miguel
+* Database password: Globant123
 * Port number: 3306
