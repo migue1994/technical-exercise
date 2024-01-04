@@ -32,6 +32,8 @@ And the API starts to wait for a request. We can use postman for send the next r
 * http://localhost:4567/api/data/query/sql -> The request returns the data of the first query from the exercise statement
 * http://localhost:4567/api/data/query/sql2 -> The request returns the data of the second query from the exercise statement
 
+If you want, you'll can do a http request, using the following web address: http://globantendpoint.eastus.cloudapp.azure.com:4567/ and perform the previous queries in the same way. (the service only works when the app is turned on, on the azure vitual machine service)
+
 ## Author
 
 ### Miguel Ángel Rivera Rojas
